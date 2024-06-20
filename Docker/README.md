@@ -162,7 +162,6 @@ docker-compose up -d app
 docker-compose up -d client
 
 docker-compose stop (stops everything if needed)
-
 ```
 
 * There could be error which says, the mongo or app are already running. These can be terminated first and later started as well.
@@ -174,5 +173,96 @@ docker-compose stop (stops everything if needed)
 
 
 ## 6. Swarm
+
+* Swarm allows you cluster and manage many containers together.
+
+### Creating a Swarm and managing them
+
+* First we need to create anode which becomes swarm manager
+
+* We ssh to the target machine (with docker installed) and run the docker swarm command
+
+```
+docker swarm init (initialises the docker swarm manager)
+
+Executing this will give the below command as the output which is ran on the target servers.
+
+docker swarm join --token SwarmToken ipaddres:port (This results in a singel node swarm)
+
+docker info
+
+docker node ls (gives the swarm nodes)
+
+docker service create --replica 1 --name nodeserver2 node ping docker.com (adds a service from docker hub)
+
+docker service ls
+```
+
+## 7. Kubernetes
+
+* Here the size can be very large than a swarm
+
+* This is more customizable than swarms
+
+* Download can be found at kubernates.io (https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/)
+
+* Add the kubectl in the path variable
+
+```
+kubectl version --client (THis can be used to check the version of the installation)
+```
+
+* minikube is used to handle the kubernetes(https://minikube.sigs.k8s.io/docs/start/).
+
+* In the kubernetes folder open powershell (ps) and type
+
+```
+New-Item -Path 'c:\' -Name 'minikube' -ItemType Directory -Force
+Invoke-WebRequest -OutFile 'c:\minikube\minikube.exe' -Uri 'https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe' -UseBasicParsing
+```
+
+### Setting up the kubernetes cluster
+
+* run the below command
+```
+minikube start
+```
+
+* if this throws an error saying default docker context is not found then try the below and try the minikube start command again
+
+```
+docker context use default
+```
+
+### Deploying the app to Kubernetes Cluster
+
+```
+kubectl create deployment nodeapplication2 --image=node
+
+This deploys node image to docker hub instead the urtl to application can also be given.
+
+kubectl get deployments
+(This gives the list of current deployments)
+```
+
+## 8. CI and deployment Use Case
+
+* Typically CI functions as a cycle, the changes to new functions are commited to repo, then CI provider tests the builds and deploys the code.
+
+* Travis CI, can be used as an open source alternative.
+
+### Create Travis Yaml file
+* Create a new folder called node
+
+
+
+
+
+
+
+
+
+
+
 
 
