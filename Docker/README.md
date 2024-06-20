@@ -252,7 +252,14 @@ kubectl get deployments
 * Travis CI, can be used as an open source alternative.
 
 ### Create Travis Yaml file
-* Create a new folder called node
+* Create a new folder called node and add the app files in it.
+
+* push the code files of node folder to a Github repository.
+
+* Open Travis CI page (https://www.travis-ci.com/ login with github) and connect the github and this repository to TRAVIS CI.
+
+* make any code change in the code.
+
 
 
 
