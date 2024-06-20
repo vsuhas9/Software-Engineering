@@ -1,0 +1,8 @@
+sudo: required
+
+services:
+- docker
+
+script:
+- docker build -t vsuhas9/Software-Engineering .
+- docker images vsuhas9/Software-Engineering
